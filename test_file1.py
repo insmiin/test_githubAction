@@ -5,7 +5,7 @@ import pytest
 @pytest.fixture(params=[
     {"username": "alice", "role": "admin"},
     {"username": "bob",   "role": "editor"},
-    {"username": "carol", "role": "viewer"},
+    {"username": "", "role": "viewer"},
 ])
 def user(request):
     """Yields one user dict per parameter set."""

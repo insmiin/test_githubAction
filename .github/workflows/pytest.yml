@@ -33,3 +33,10 @@ jobs:
         with:
           name: test-reporthaha
           path: report.html
+
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: report.html

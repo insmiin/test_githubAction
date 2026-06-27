@@ -24,26 +24,25 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      # Generate BOTH html + xml
       - name: Run pytest
         run: |
-          pytest -vv --junitxml=report.xml #if gen html report,use this "--html=report.html"   #if no need report use this "--color=yes"
+          pytest -v --color=yes \
+            --html=report.html \
+            --junitxml=report.xml
 
-      #- name: Upload report
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: test-reporthaha
-      #    path: report.html
+      # Upload HTML file for download
+      - name: Upload HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: report.html
 
-      #- name: Upload HTML Report
-      # if: always()
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: pytest-html-report
-      #    path: report.html
-
+      # Parse XML and show test summary in GitHub UI
       - name: Test Reporter
-        uses: dorny/test-reporter@v1
         if: success() || failure()
+        uses: dorny/test-reporter@v1
         with:
           name: Pytest Results
           path: report.xml

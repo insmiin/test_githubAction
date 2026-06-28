@@ -1,12 +1,13 @@
 # to trigger Jmeter jobs & pytest jobs in one workflow
-# best practise is to run them in separate job , or even workflow(YAML). depends on ur need
+# best practise is to run them in separate job , or even separate workflow(YAML). depends on ur need
+# anyway , i have disabled this YAML(by renaming it to not suffix with .yml). workflow only detect file ends with .yml
 name: Run JMeter & pytest Tests workflow
 
   # auto trigger upon push to master branch, i comment out to disable the auto trigger
-#on:
-  #push:
-  #  branches:
-  #    - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   # first job ,jmeter

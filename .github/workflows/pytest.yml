@@ -1,7 +1,7 @@
 name: test wf Pytest workflow
 
 
-  #### auto trigger upon push to master branch
+# auto trigger upon push to master branch
 on:
   push:
     branches:

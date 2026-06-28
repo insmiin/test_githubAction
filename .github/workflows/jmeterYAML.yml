@@ -34,7 +34,7 @@ jobs:
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter -n \
-            -t json extractor.jmx \
+            -t json_extractor.jmx \
             -l results.jtl \
             -e -o report
 

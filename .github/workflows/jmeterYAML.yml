@@ -1,10 +1,11 @@
-name: Run JMeter Tests hohohehe
+name: test wf Jmeter workflow
 
-#on:
-  #### auto trigger upon push to master branch
-  #push:
-  #  branches:
-  #    - master
+# auto trigger after workflow called "test wf Pytest workflow"
+on:
+  workflow_run:
+    workflows: [ "test wf Pytest workflow" ]
+    types:
+      - completed
 
 jobs:
   performance-test:

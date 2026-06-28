@@ -1,10 +1,11 @@
-name: Run my Pytest hahahehe
+name: test wf Pytest workflow
 
-#on:
+
   #### auto trigger upon push to master branch
-  #push:
-  #  branches:
-  #    - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   test:

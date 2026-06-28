@@ -1,9 +1,10 @@
 name: Run my Pytest hahahehe
 
 on:
-  push:
-    branches:
-      - master
+  #auto trigger upon push to master branch
+  #push:
+  #  branches:
+  #    - master
 
 jobs:
   test:

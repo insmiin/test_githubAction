@@ -1,4 +1,6 @@
-name: Run JMeter Tests hohohehe
+# to trigger Jmeter jobs & pytest jobs in one workflow
+# best practise is to run them in separate job , or even workflow(YAML). depends on ur need
+name: Run JMeter & pytest Tests
 
 on:
   #auto trigger upon push to master branch
@@ -9,7 +11,6 @@ on:
 jobs:
   # first job ,jmeter
   performance-test-jmeter:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -53,7 +54,7 @@ jobs:
 
   # 2nd job, using pytest
   test-using-pytest:
-
+    needs: performance-test-jmeter  #by default, all jobs run concurrently. use needs to set dependency
     runs-on: ubuntu-latest
 
     steps:

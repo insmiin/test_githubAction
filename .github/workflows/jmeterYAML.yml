@@ -1,7 +1,7 @@
 name: Run JMeter Tests hohohehe
 
-on:
-  # auto trigger upon push to master branch
+#on:
+  #### auto trigger upon push to master branch
   #push:
   #  branches:
   #    - master

@@ -7,6 +7,7 @@ on:
       - master
 
 jobs:
+  # first job ,jmeter
   performance-test-jmeter:
 
     runs-on: ubuntu-latest
@@ -50,7 +51,7 @@ jobs:
             jmeter.log 
             report/
 
-jobs:
+  # 2nd job, using pytest
   test-using-pytest:
 
     runs-on: ubuntu-latest

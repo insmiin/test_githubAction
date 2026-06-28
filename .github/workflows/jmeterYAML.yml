@@ -36,7 +36,7 @@ jobs:
           ./jmeter/bin/jmeter -n \
             -t github_jmeter.jmx \
             -l results.jtl \
-            -j jmeter.log
+            -j jmeter.log \
             -e -o report
 
       # 5. Save artifacts

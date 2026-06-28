@@ -45,5 +45,6 @@ jobs:
         with:
           name: jmeter-report
           path: |
-            results.jtl
+            results.jtl \
+            jmeter.log \
             report/

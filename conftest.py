@@ -23,5 +23,3 @@ def my_conftest_test():
         if conn and conn.is_connected():
             print('going to close the mysql connection')
             conn.close()
-
-    return 'abc'

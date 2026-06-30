@@ -15,7 +15,7 @@ def user(request):
 # ── Tests that consume the fixture ────────────────────────────────────────────
 
 def test_username_not_empty(user,my_conftest_test):
-    assert my_conftest_test == 'abc', 'wrong value'
+    assert my_conftest_test == 'abcc', 'wrong value'
     assert user["username"], "username must not be empty"
 
 

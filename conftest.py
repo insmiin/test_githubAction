@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 
 @pytest.fixture(scope="session")
-def my_conftest_test():
+def my_conftest_conntest():
     print('mysql_connection fixtureee')
     conn = None
     try:

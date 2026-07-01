@@ -1,3 +1,5 @@
+# my workflow is running on a Windows self-hosted runner, and GitHub Actions is using PowerShell by default.
+# so all the syntax here need to follow powershell
 name: test wf Pytest workflow
 
 
@@ -10,7 +12,7 @@ on:
 jobs:
   test:
 
-    runs-on: self-hosted
+    runs-on: self-hosted     #i alrady install sself hosted runner on my windows machine. so it will use this machine to run instead
 
     steps:
 
@@ -20,8 +22,8 @@ jobs:
       # Generate BOTH html + xml
       - name: Run pytest
         run: |
-          pytest -v --color=yes \
-            --html=report.html \
+          pytest -v --color=yes `
+            --html=report.html `
             --junitxml=report.xml
 
       # Upload HTML file for download

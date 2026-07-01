@@ -1,3 +1,4 @@
+# this workflow run on linux (temporary runner), so this script is all in Linux/bash syntax.
 name: test wf Pytest workflow
 
 

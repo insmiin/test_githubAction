@@ -25,7 +25,7 @@ def test_username_not_empty(user,my_conftest_conntest):
         my_conftest_conntest.commit()  # Ends the transaction
         all_sportIDs_dict = [sport['sportID'] for sport in data]  # [1, 2, 3, 4,....,67]
     except exception():
-        pytest.fail(f"MySQL getMemHitHistory_Mysql query error: {err}")
+        pytest.fail(f"MySQL getMemHitHistory_Mysql query error:ddddd")
     finally:
         if mycursor:
             mycursor.close()

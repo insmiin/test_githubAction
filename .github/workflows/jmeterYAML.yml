@@ -9,7 +9,15 @@ name: test wf Jmeter workflow
 
 on:
   workflow_dispatch:
-    
+    inputs:
+      environment:
+        description: 'Protocol type'
+        required: true
+        default: 'ht'
+        type: choice
+        options:
+          - http
+          - https
 jobs:
   performance-test:
 
@@ -39,6 +47,7 @@ jobs:
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter -n \
+            -Jp_protocol=${{inputs.environment}}
             -t github_jmeter.jmx \
             -l results.jtl \
             -j jmeter.log \

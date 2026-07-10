@@ -9,7 +9,7 @@ name: test wf Jmeter workflow
 
 on:
   workflow_dispatch:
-    inputs:
+    inputs:  # this will prompt UI input
       environment:
         description: 'Protocol type'
         required: true

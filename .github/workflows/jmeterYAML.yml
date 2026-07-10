@@ -1,12 +1,15 @@
 name: test wf Jmeter workflow
 
 # auto trigger after workflow called "test wf Pytest workflow"
-on:
-  workflow_run:
-    workflows: [ "test wf Pytest workflow" ]
-    types:
-      - completed
+#on:
+#  workflow_run:
+#    workflows: [ "test wf Pytest workflow" ]
+#    types:
+#      - completed
 
+on:
+  workflow_dispatch:
+    
 jobs:
   performance-test:
 

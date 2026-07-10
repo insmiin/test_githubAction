@@ -47,7 +47,7 @@ jobs:
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter -n \
-            -Jp_protocol=${{inputs.environment}}
+            -Jp_protocol=${{inputs.environment}} \
             -t github_jmeter.jmx \
             -l results.jtl \
             -j jmeter.log \

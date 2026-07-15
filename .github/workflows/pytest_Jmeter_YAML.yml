@@ -39,7 +39,7 @@ jobs:
         run: |
           ./jmeter/bin/jmeter -n \
             -t github_jmeter.jmx \
-            -l results.jtl \
+            -l results.xml \
             -j jmeter.log \
             -Jlog_level.jmeter=INFO \
             -Jlog_level.jmeter=INFO \

@@ -41,6 +41,11 @@ jobs:
             -t github_jmeter.jmx \
             -l results.jtl \
             -j jmeter.log \
+            -Jlog_level.jmeter=INFO \
+            -Jlog_level.jmeter=INFO \
+            -Jjmeter.save.saveservice.output_format=xml \
+            -Jjmeter.save.saveservice.response_data=true \
+            -Jjmeter.save.saveservice.samplerData=true
             -e -o report
 
       # 5. Save artifacts

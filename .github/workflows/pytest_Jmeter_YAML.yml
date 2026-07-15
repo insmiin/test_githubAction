@@ -45,7 +45,7 @@ jobs:
             -Jlog_level.jmeter=INFO \
             -Jjmeter.save.saveservice.output_format=xml \
             -Jjmeter.save.saveservice.response_data=true \
-            -Jjmeter.save.saveservice.samplerData=true
+            -Jjmeter.save.saveservice.samplerData=true \
             -e -o report
 
       # 5. Save artifacts

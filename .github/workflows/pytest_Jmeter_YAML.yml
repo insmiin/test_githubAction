@@ -42,11 +42,10 @@ jobs:
             -l results.xml \
             -j jmeter.log \
             -Jlog_level.jmeter=INFO \
-            -Jlog_level.jmeter=INFO \
             -Jjmeter.save.saveservice.output_format=xml \
             -Jjmeter.save.saveservice.response_data=true \
-            -Jjmeter.save.saveservice.samplerData=true \
-            -e -o report
+            -Jjmeter.save.saveservice.samplerData=true
+        # -e -o report   this will gen csv html report
 
       # 5. Save artifacts
       - name: Upload Reports

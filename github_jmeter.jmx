@@ -54,7 +54,7 @@
           <elementProp name="protocol" elementType="Argument">
             <stringProp name="Argument.name">protocol</stringProp>
             <stringProp name="Argument.value">https</stringProp>
-            <stringProp name="Argument.desc">${__P(p_protocol}</stringProp>
+            <stringProp name="Argument.desc">${__P(p_protocol)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

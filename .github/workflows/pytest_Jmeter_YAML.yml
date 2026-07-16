@@ -38,7 +38,7 @@ jobs:
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter -n \
-            -t github_jmeter.jmx \
+            -t postman.jmx \
             -l results.xml \
             -j jmeter.log \
             -Jlog_level.jmeter=INFO \

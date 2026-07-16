@@ -60,7 +60,7 @@ jobs:
       # 6a.
       - name: Convert JMeter XML to JUnit
         run: |
-          python scripts/jmeter_to_junit.py results.xml junit.xml
+          python jmeter_to_junit.py results.xml junit.xml
       #6b
       - name: Test Reporter
         if: success() || failure()

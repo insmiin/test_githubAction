@@ -49,7 +49,7 @@ jobs:
         with:
           name: jmeter-report
           path: |
-            results.xml   
+            results.jtl   
             jmeter.log 
             report/
 

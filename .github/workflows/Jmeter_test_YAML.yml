@@ -55,10 +55,16 @@ jobs:
             -Jjmeter.save.saveservice.response_data=true \
             -Jjmeter.save.saveservice.samplerData=true
 
-      # 5. Convert XML test results into an HTML report  (using python)
-      - name: Convert JMeter XML to HTML
+      # 5a. Convert XML test results into an HTML report  (using python)
+#      - name: Convert JMeter XML to HTML
+#        run: |
+#          python jmeter_xml_to_html.py results.xml results_html.html
+
+      # 5b. Convert XML test results into an HTML report  (using powershell)
+      - name: Convert XML to HTML
+        shell: pwsh
         run: |
-          python jmeter_xml_to_html.py results.xml results_html.html
+          ./jmeter_xml_to_html.ps1 results.xml results_html.html
 
       # 6. Store test artifacts for later download manually
       - name: Upload Reports

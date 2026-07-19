@@ -14,8 +14,12 @@ jobs:
   performance-test-jmeter:
     runs-on: ubuntu-latest
 
-    steps:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
+    steps:
       # 1. Download repository
       - name: Checkout code
         uses: actions/checkout@v4
@@ -60,6 +64,25 @@ jobs:
             results.xml   
             jmeter.log
             results_html.html
+            
+
+      - name: Prepare Pages content
+        run: |
+          mkdir pages
+          cp results_html.html pages/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
 
 
 

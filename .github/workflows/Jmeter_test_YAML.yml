@@ -106,7 +106,7 @@ jobs:
 
   # 2nd job, using pytest
   test-using-pytest:
-    needs: performance-test-jmeter  #by default, all jobs run concurrently. use needs to set dependency
+    needs: test-using-jmeter  #by default, all jobs run concurrently. use needs to set dependency
     runs-on: ubuntu-latest
 
     steps:

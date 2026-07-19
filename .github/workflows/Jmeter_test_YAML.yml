@@ -1,4 +1,5 @@
 # to trigger Jmeter jobs & pytest jobs in one workflow
+# convert jmeter xml log to html   and print pytest result on UI
 # best practise is to run them in separate job , or even separate workflow(YAML). depends on ur need
 # anyway , i have disabled this YAML(by renaming it to not suffix with .yml). workflow only detect file ends with .yml
 name: Run JMeter & pytest Tests workflow

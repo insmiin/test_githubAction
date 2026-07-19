@@ -36,14 +36,14 @@ $rows = foreach ($sample in $xml.testResults.httpSample) {
 
     if ($rc -ne "200") {
         $apiResponse = ""
-        $expectedReturn = ""
+        $failureMessage = "http request failed"
     }
     else {
-        $apiResponse = $sample.responseData.InnerText
+        $apiResponse = $sample.responseData.InnerText   #in powershell, responseData is considered as element with attribute 'class=xxx', so have to use innertext
 
-        $expectedReturn = ""
+        $failureMessage = ""
         if ($sample.assertionResult) {
-            $expectedReturn =
+            $failureMessage =
                 $sample.assertionResult.failureMessage
         }
     }
@@ -56,8 +56,8 @@ $rows = foreach ($sample in $xml.testResults.httpSample) {
     <td>$($enc::HtmlEncode($testcase))</td>
     <td>$($enc::HtmlEncode($httpStatus))</td>
     <td>$($enc::HtmlEncode($apiResponse))</td>
-    <td>$($enc::HtmlEncode($expectedReturn))</td>
     <td class="status">$result</td>
+    <td>$($enc::HtmlEncode($failureMessage))</td>
 </tr>
 "@
 }

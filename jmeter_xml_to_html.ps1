@@ -39,7 +39,7 @@ $rows = foreach ($sample in $xml.testResults.httpSample) {
         $expectedReturn = ""
     }
     else {
-        $apiResponse = $sample.responseData
+        $apiResponse = $sample.responseData.InnerText
 
         $expectedReturn = ""
         if ($sample.assertionResult) {

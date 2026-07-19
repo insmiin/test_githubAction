@@ -45,19 +45,19 @@ def xml_to_html(xml_file, output_file):
 
         if rc != "200":
             API_response  = ''
-            expected_return = ''
+            failureMessage = 'http request failed'
         else:
             # Response JSON
             API_response = sample.findtext("responseData", "")
 
             # Assertion message
             assertion = sample.find("assertionResult")  # return 1st matching element called 'assertionResult' and its own attributes & child elements
-            expected_return = ''  # if there is more than 1 then need to use findall and loop thru it again.
+            failureMessage = ''  # if there is more than 1 then need to use findall and loop thru it again.
             if assertion is not None:
                 msg = assertion.findtext("failureMessage")
                 print('msg==', msg)
                 if msg:
-                    expected_return = msg
+                    failureMessage = msg
 
         rows.append(f"""
             <tr class="{row_class}">
@@ -65,8 +65,8 @@ def xml_to_html(xml_file, output_file):
                 <td>{escape(testcase)}</td>
                 <td>{http_status}</td>
                 <td>{escape(API_response)}</td>
-                <td>{escape(expected_return)}</td>
                 <td class="status">{result}</td>
+                <td>{escape(failureMessage)}</td>
             </tr>
             """)
 

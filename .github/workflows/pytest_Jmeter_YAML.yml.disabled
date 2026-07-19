@@ -35,17 +35,13 @@ jobs:
           mv apache-jmeter-5.6.3 jmeter
 
       # 4. Run test plan
-      - name: Run JMeter Test
+      - name: Run JMeter Test      # gen jtl only
         run: |
           ./jmeter/bin/jmeter -n \
             -t postman.jmx \
-            -l results.xml \
+            -l results.jtl \
             -j jmeter.log \
-            -Jlog_level.jmeter=INFO \
-            -Jjmeter.save.saveservice.output_format=xml \
-            -Jjmeter.save.saveservice.response_data=true \
-            -Jjmeter.save.saveservice.samplerData=true
-        # -e -o report   this will gen csv html report
+            -e -o report   
 
       # 5. Save artifacts
       - name: Upload Reports
@@ -53,22 +49,10 @@ jobs:
         with:
           name: jmeter-report
           path: |
-            results.xml   
+            results.jtl   
             jmeter.log 
             report/
 
-      # 6a.
-      - name: Convert JMeter XML to JUnit
-        run: |
-          python jmeter_to_junit.py results.xml junit.xml
-      #6b
-      - name: Test Reporter
-        if: success() || failure()
-        uses: dorny/test-reporter@v1
-        with:
-          name: JMeter Results
-          path: junit.xml
-          reporter: java-junit
 
   # 2nd job, using pytest
   test-using-pytest:

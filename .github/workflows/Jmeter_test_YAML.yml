@@ -39,19 +39,29 @@ jobs:
         run: |
           ./jmeter/bin/jmeter -n \
             -t postman.jmx \
-            -l results.jtl \
+            -l results.xml \
             -j jmeter.log \
-            -e -o report   
+            -Jlog_level.jmeter=INFO \
+            -Jjmeter.save.saveservice.output_format=xml \
+            -Jjmeter.save.saveservice.response_data=true \
+            -Jjmeter.save.saveservice.samplerData=true
 
-      # 5. Save artifacts
+      # 5.
+      - name: Convert JMeter XML to HTML
+        run: |
+          python jmeter_xml_to_html.py results.xml results_html.html
+
+      # 6. Save artifacts
       - name: Upload Reports
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-report
           path: |
-            results.jtl   
-            jmeter.log 
-            report/
+            results.xml   
+            jmeter.log
+            results_html.html/ 
+
+
 
 
   # 2nd job, using pytest

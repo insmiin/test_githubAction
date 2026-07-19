@@ -51,7 +51,7 @@ jobs:
           path: |
             results.jtl   
             jmeter.log 
-            report/
+            report/   # add / if it is a folder
 
 
   # 2nd job, using pytest

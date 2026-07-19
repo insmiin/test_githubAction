@@ -59,7 +59,7 @@ jobs:
           path: |
             results.xml   
             jmeter.log
-            results_html.html/ 
+            results_html.html
 
 
 

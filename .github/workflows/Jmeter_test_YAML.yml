@@ -19,6 +19,10 @@ jobs:
       pages: write
       id-token: write
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       # 1. Download repository
       - name: Checkout code
@@ -71,7 +75,7 @@ jobs:
           mkdir pages
           cp results_html.html pages/index.html
 
-      - name: Setup Pages
+      - name: Setup Pages                      #ensure u hv enabled pages in  Repository → Settings → Pages -> Build and deploymen -> Source: GitHub Actions
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact

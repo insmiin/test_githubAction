@@ -10,39 +10,40 @@ on:
       - master
 
 jobs:
-  # first job ,jmeter
-  performance-test-jmeter:
+  # First job: execute performance tests using JMeter
+  test-using-jmeter:
     runs-on: ubuntu-latest
 
+    # Permissions required for deploying reports to GitHub Pages
     permissions:
       contents: read
       pages: write
       id-token: write
-
+    # GitHub Pages deployment environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # 1. Download repository
+      # 1. Download repository source code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Install Java (required by JMeter)
+      # 2. Install Java runtime required by JMeter
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      # 3. Download JMeter
+      # 3. Download and extract Apache JMeter
       - name: Install JMeter
         run: |
           wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
           tar -xzf apache-jmeter-5.6.3.tgz
           mv apache-jmeter-5.6.3 jmeter
 
-      # 4. Run test plan
+      # 4. Execute JMeter test plan in non-GUI mode
       - name: Run JMeter Test
         run: |
           ./jmeter/bin/jmeter -n \
@@ -54,12 +55,12 @@ jobs:
             -Jjmeter.save.saveservice.response_data=true \
             -Jjmeter.save.saveservice.samplerData=true
 
-      # 5.
+      # 5. Convert XML test results into an HTML report  (using python)
       - name: Convert JMeter XML to HTML
         run: |
           python jmeter_xml_to_html.py results.xml results_html.html
 
-      # 6. Save artifacts
+      # 6. Store test artifacts for later download manually
       - name: Upload Reports
         uses: actions/upload-artifact@v4
         with:
@@ -69,20 +70,26 @@ jobs:
             jmeter.log
             results_html.html
             
-
+      # Prepare files that will be published to GitHub Pages
       - name: Prepare Pages content
         run: |
           mkdir pages
           cp results_html.html pages/index.html
 
-      - name: Setup Pages                      #ensure u hv enabled pages in  Repository → Settings → Pages -> Build and deploymen -> Source: GitHub Actions
+      # Configure GitHub Pages deployment
+      # Ensure GitHub Pages is enabled:
+      # Repository → Settings → Pages → Build and deployment → Source: GitHub Actions
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Upload website files as a special Pages artifact
+        # you must store this, so that github can use the html here to publish on UI
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./pages
 
+      # Publish the HTML report to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

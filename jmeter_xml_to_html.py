@@ -153,9 +153,9 @@ def xml_to_html(xml_file, output_file):
     print(f"HTML report generated: {output_file}")
 
 # sys.argv[0] is 'jmeter_xml_to_html.py'
-input_xml = sys.argv[1]   # Catches "results.xml"
-output_html = sys.argv[2] # Catches "results_html.html"
+# input_xml = sys.argv[1]   # Catches "results.xml"
+# output_html = sys.argv[2] # Catches "results_html.html"
 
 # Usage
-xml_to_html(input_xml, output_html)
-# xml_to_html("C:/Users/lim.miin/Downloads/results.xml", "C:/Users/lim.miin/Downloads/JMeterResult.html")
+#xml_to_html(input_xml, output_html)
+xml_to_html("C:/Users/lim.miin/Downloads/results.xml", "C:/Users/lim.miin/Downloads/JMeterResult.html")

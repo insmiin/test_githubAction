@@ -100,8 +100,8 @@ tr.fail td { background:#fff4f4; }
     <th>Test Case</th>
     <th>Http status code</th>
     <th>API Response</th>
-    <th>Expected Return</th>
     <th>Result</th>
+    <th>failureMessage</th>
 </tr>
 </thead>
 <tbody>

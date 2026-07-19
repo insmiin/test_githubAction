@@ -134,8 +134,8 @@ def xml_to_html(xml_file, output_file):
         <th>Test Case</th>
         <th>Http status code</th>
         <th>API Response</th>
-        <th>Expected Return</th>
         <th>Result</th>
+        <th>Failure Message</th>
     </tr>
     </thead>
     <tbody>

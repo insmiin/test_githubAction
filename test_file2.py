@@ -9,9 +9,6 @@ def convert_to_uppercase(value_b):
     return mapping[value_b]
 
 def test_processing_behavior2():
-    # If this raises a ValueError, Pytest catches it and marks the test as FAILED.
-    # This is exactly what you want if the input was supposed to be valid.
-
 
     result = 3
     assert result == 3

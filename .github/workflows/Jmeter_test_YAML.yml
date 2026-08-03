@@ -7,8 +7,10 @@ name: Run JMeter & pytest Tests workflow
   # auto trigger upon push to master branch, i comment out to disable the auto trigger
 on:
   push:
-    branches:
-      - master
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   # First job: execute performance tests using JMeter

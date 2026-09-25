@@ -51,7 +51,7 @@ jobs:
           ./jmeter/bin/jmeter -n \
             -t postman(JSR223_ResultToCSV).jmx \
             -l results.jtl \
-            -j jmeter.log \
+            -j jmeter.log 
 
 
       # 6. Store test artifacts for later download manually

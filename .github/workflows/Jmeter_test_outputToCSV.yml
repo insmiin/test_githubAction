@@ -16,15 +16,6 @@ jobs:
   test-using-jmeter:
     runs-on: ubuntu-latest
 
-    # Permissions required for deploying reports to GitHub Pages
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    # GitHub Pages deployment environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       # 1. Download repository source code

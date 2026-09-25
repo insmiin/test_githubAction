@@ -63,9 +63,3 @@ jobs:
             results.jtl   
             jmeter.log
             Jmeter_JSR223_ResultToCSV.csv
-            
-
-      # Publish the HTML report to GitHub Pages
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

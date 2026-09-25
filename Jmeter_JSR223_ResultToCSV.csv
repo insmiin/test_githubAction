@@ -1,0 +1,6 @@
+TestCaseName,URL,HttpResponseCode,actualResult,expectedResult,status,failedReason
+"request book status","https://simple-books-api.click/status","200","OK","OK","Passed",""
+"Request books fiction type","https://simple-books-api.click/books?type=non-fiction","200","non-fiction","non-fiction","Passed",""
+"request all bookID2","https://simple-books-api.click/books/2","200","2","2","Passed"
+"request all bookID80","https://simple-books-api.click/books/2","200","2","80","Failed","expecting record id 80"
+"request all bookid httperror","https://simple-books-api.click/books/httperror","400","400","200","Failed","expecting 200 http response code"

@@ -1,0 +1,71 @@
+# to trigger Jmeter .
+# write code in JSR223 under each sampler to print expected result into csv
+
+name: Run JMeter (test output result to CSV only)
+
+  # auto trigger upon push to master branch, i comment out to disable the auto trigger
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  # only 1 job 'test-using-jmeter'
+  test-using-jmeter:
+    runs-on: ubuntu-latest
+
+    # Permissions required for deploying reports to GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # GitHub Pages deployment environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 1. Download repository source code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Install Java runtime required by JMeter
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # 3. Download and extract Apache JMeter
+      - name: Install JMeter
+        run: |
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+          mv apache-jmeter-5.6.3 jmeter
+
+      # 4. Execute JMeter test plan in non-GUI mode
+      - name: Run JMeter Test
+        run: |
+          ./jmeter/bin/jmeter -n \
+            -t postman(JSR223_ResultToCSV).jmx \
+            -l results.jtl \
+            -j jmeter.log \
+
+
+      # 6. Store test artifacts for later download manually
+      - name: Upload Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-report
+          path: |
+            results.jtl   
+            jmeter.log
+            Jmeter_JSR223_ResultToCSV.csv
+            
+
+      # Publish the HTML report to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

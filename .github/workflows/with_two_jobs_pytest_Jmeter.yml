@@ -3,15 +3,17 @@
 # anyway , i have disabled this YAML(by renaming it to not suffix with .yml). workflow only detect file ends with .yml
 name: Run JMeter & pytest Tests workflow
 
-  # auto trigger upon push to master branch, i comment out to disable the auto trigger
+  # auto trigger upon push to master,main branch or upon pull Request
 on:
   push:
-    branches:
-      - master
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   # first job ,jmeter
-  performance-test-jmeter:
+  first-job-test-jmeter:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +40,7 @@ jobs:
       - name: Run JMeter Test      # gen jtl only
         run: |
           ./jmeter/bin/jmeter -n \
-            -t postman.jmx \
+            -t xml_resultToHtml.jmx \
             -l results.jtl \
             -j jmeter.log \
             -e -o report   
@@ -55,7 +57,7 @@ jobs:
 
 
   # 2nd job, using pytest
-  test-using-pytest:
+  second-job test-using-pytest:
     needs: performance-test-jmeter  #by default, all jobs run concurrently. use needs to set dependency
     runs-on: ubuntu-latest
 

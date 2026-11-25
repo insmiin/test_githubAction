@@ -33,6 +33,7 @@ jobs:
         run: |
           pytest -v --color=yes \
             --html=report.html \
+            --self-contained-html \
             --junitxml=report.xml
 
       # Upload HTML file for download
